@@ -1,0 +1,23 @@
+{% extends './base.html' %}
+{% block content %}
+    {% if all_countries %}
+    <ul>
+        {% for country in all_countries %}
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+               <a href="{% url 'covidcases:details' country.id %}" class="btn btn-primary" style="margin-bottom: 10px;">{{ country.country_name }}</a>
+               <p class="card-text list-group-item list-group-item-action list-group-item-warning">Active Cases:
+                   {{country.active_cases}}</p>
+               <p class="card-text list-group-item list-group-item-action list-group-item-danger">Dead Cases:
+                   {{country.dead_cases}}</p>
+            </div>
+        </div>
+        <br>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <div class="alert alert-danger">
+        No Countries added yet
+    </div>
+    {% endif %}
+{% endblock %}
